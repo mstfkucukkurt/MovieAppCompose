@@ -1,10 +1,12 @@
 package com.example.movieapp.presentation.movies.views
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -16,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.style.TextAlign
@@ -37,16 +40,18 @@ fun MovieListRow(
             .padding(10.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-            Image(painter = rememberAsyncImagePainter(model = movie.Poster),
-                contentDescription = movie.Title,
-                modifier = Modifier
-                    .padding(16.dp)
-                    .size(200.dp, 200.dp)
-                    .clip(RectangleShape)
-            )
+        Image(painter = rememberAsyncImagePainter(model = movie.Poster),
+            contentDescription = movie.Title,
+            modifier = Modifier
+                .padding(16.dp)
+                .size(200.dp, 200.dp)
+                .clip(RectangleShape)
+        )
 
         Column(
-            modifier = Modifier.align(CenterVertically),horizontalAlignment = Alignment.CenterHorizontally
+            modifier = Modifier
+                .fillMaxSize()
+                .align(CenterVertically), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center
         ) {
             Text(text = movie.Title,
                 style = MaterialTheme.typography.titleMedium,
@@ -54,12 +59,22 @@ fun MovieListRow(
                 color = White,
                 textAlign = TextAlign.Center
             )
-            Text(movie.Year,
-                style = MaterialTheme.typography.titleMedium,
-                overflow = TextOverflow.Ellipsis,
-                color = White,
-                textAlign = TextAlign.Center
-            )
+            Surface(
+                shape = MaterialTheme.shapes.medium,
+                shadowElevation = 1.dp,
+                color = Color.Red,
+                modifier = Modifier
+                    .animateContentSize()
+                    .padding(1.dp)
+            ) {
+                Text(movie.Year,
+                    style = MaterialTheme.typography.titleMedium,
+                    overflow = TextOverflow.Ellipsis,
+                    color = White,
+                    textAlign = TextAlign.Center
+                )
+            }
+
         }
     }
 }

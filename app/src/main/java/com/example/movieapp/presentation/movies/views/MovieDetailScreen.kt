@@ -21,10 +21,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import com.example.movieapp.presentation.movie_detail.MovieDetailViewModel
@@ -55,13 +57,16 @@ fun MovieDetailScreen(
                 Text(text = it.Title,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(14.dp),
-                    color = Color.White
+                    color = Color.White,
+                    fontSize = 23.sp,
+                    style = MaterialTheme.typography.headlineMedium
                 )
 
                 Text(text = it.Year,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(14.dp),
-                    color = Color.White
+                    color = Color.White,
+                    fontSize = 18.sp
                 )
 
                 Text(text = it.Actors,
